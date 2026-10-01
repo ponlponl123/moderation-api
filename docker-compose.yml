@@ -1,0 +1,17 @@
+services:
+  moderation-api:
+    build: .
+    ports:
+      - "4003:4003"
+    environment:
+      - PORT=4003
+      - NODE_ENV=production
+      - LOGGING=traffic
+      - MODERATION_CPU_THREADS=1
+      - REDIS_ENABLED=false
+    volumes:
+      - hf-cache:/home/bun/.cache
+    restart: unless-stopped
+
+volumes:
+  hf-cache:
